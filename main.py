@@ -4,9 +4,12 @@ import json
 from folium.plugins import Search
 
 
+# Required data files
 geojson = json.load(open('countries.json'))
 data = pd.read_csv('2019.csv')
+# Create map
 m = folium.Map(location=[63.391522, 96.328125], zoom_start=3)
+# Creating a layer based on data from a .csv file
 rel_ = folium.Choropleth(
     geo_data=geojson,
     data=data,
@@ -22,6 +25,7 @@ rel_ = folium.Choropleth(
     highlight=True,
     show=False,
 )
+# Adding a search button by country name
 style_one = lambda x: {'fillColor': '#ff1111'}
 geojson_obj = folium.GeoJson(geojson, style_function=style_one).add_to(m)
 
@@ -33,4 +37,5 @@ StateSearch = Search(layer=geojson_obj,
                      search_zoom=5,
                      position='topright').add_to(m)
 rel_.add_to(m)
-m.save("main213123.html")
+# Save map
+m.save("map.html")
