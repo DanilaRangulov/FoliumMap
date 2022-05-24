@@ -1,7 +1,6 @@
 import folium
 import pandas as pd
 import json
-import folium
 from folium.plugins import Search
 
 
